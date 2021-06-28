@@ -1,6 +1,6 @@
 name: 'Create Deployment'
 description: 'Create a GitHub deployment'
-author: 'Jack WIckham'
+author: 'Jack Wickham'
 inputs:
   token:
     required: true
