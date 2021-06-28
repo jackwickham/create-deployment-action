@@ -1,0 +1,51 @@
+{
+  "name": "create-deployment-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to create a deployment",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint src/**/*.ts --fix",
+    "pack": "ncc build",
+    "check": "npm run build && npm run format-check && npm run lint && npm run test",
+    "all": "npm run build && npm run format && npm run lint-fix && npm run test && npm run pack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackwickham/create-deployment-action.git"
+  },
+  "author": "Jack Wickham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackwickham/create-deployment-action/issues"
+  },
+  "homepage": "https://github.com/jackwickham/create-deployment-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "typescript": "^4.3.4"
+  },
+  "files": [
+    "./bin/*",
+    "./lib/*"
+  ],
+  "typings": "./lib/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "@vercel/ncc": "^0.28.6",
+    "eslint": "^7.29.0",
+    "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.6",
+    "jest-circus": "^27.0.6",
+    "nock": "^13.1.0",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3"
+  }
+}
