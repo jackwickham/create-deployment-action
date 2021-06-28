@@ -40,16 +40,25 @@ const core = __importStar(__nccwpck_require__(186));
 const github = __importStar(__nccwpck_require__(438));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = core.getInput("token", { required: true });
-        const octokit = github.getOctokit(token);
-        yield octokit.rest.repos.createDeployment({
-            owner: github.context.repo.owner,
-            repo: github.context.repo.repo,
-            ref: core.getInput("ref") || github.context.sha,
-            task: core.getInput("task") || "deploy",
-            environment: core.getInput("environment") || "production",
-            description: core.getInput("description") || "",
-        });
+        try {
+            const token = core.getInput("token", { required: true });
+            // Required contexts (ie passed checks) need to exclude the current check, since it's incomplete
+            const requiredContextsStr = core.getInput("requiredContexts");
+            const requiredContexts = requiredContextsStr ? JSON.parse(requiredContextsStr) : [];
+            const octokit = github.getOctokit(token);
+            yield octokit.rest.repos.createDeployment({
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                ref: core.getInput("ref") || github.context.sha,
+                task: core.getInput("task") || "deploy",
+                environment: core.getInput("environment") || "production",
+                description: core.getInput("description") || "",
+                required_contexts: requiredContexts,
+            });
+        }
+        catch (e) {
+            core.setFailed(e);
+        }
     });
 }
 exports.run = run;

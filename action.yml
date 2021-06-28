@@ -5,6 +5,21 @@ inputs:
   token:
     required: true
     description: 'GitHub token to use to create the deployment'
+  requiredContexts:
+    description: 'The checks that must have passed for the deployment to be allowed, as an array'
+    default: '[]'
+  ref:
+    description: 'The ref to create the deployment on'
+    default: '${{ github.sha }}'
+  task:
+    description: 'The deployment task'
+    default: 'deploy'
+  environment:
+    description: 'The deployment environment'
+    default: 'production'
+  description:
+    description: 'The deployment description'
+    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

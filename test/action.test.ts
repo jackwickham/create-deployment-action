@@ -25,6 +25,7 @@ describe("action", () => {
           task: "deploy",
           environment: "production",
           description: "",
+          required_contexts: [],
         });
         return true;
       })
