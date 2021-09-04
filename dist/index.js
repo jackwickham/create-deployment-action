@@ -57,7 +57,12 @@ function run() {
             });
         }
         catch (e) {
-            core.setFailed(e);
+            if (e instanceof Error) {
+                core.setFailed(e);
+            }
+            else {
+                core.setFailed(String(e));
+            }
         }
     });
 }
@@ -6348,7 +6353,7 @@ var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const action_1 = __nccwpck_require__(139);
-action_1.run();
+(0, action_1.run)();
 //# sourceMappingURL=index.js.map
 })();
 

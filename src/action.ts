@@ -19,6 +19,10 @@ export async function run(): Promise<void> {
       required_contexts: requiredContexts,
     });
   } catch (e) {
-    core.setFailed(e);
+    if (e instanceof Error) {
+      core.setFailed(e);
+    } else {
+      core.setFailed(String(e));
+    }
   }
 }
