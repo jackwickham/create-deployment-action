@@ -26,7 +26,7 @@
   "homepage": "https://github.com/jackwickham/create-deployment-action#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0",
+    "@actions/github": "^5.0.1",
     "typescript": "^4.6.3"
   },
   "files": [
